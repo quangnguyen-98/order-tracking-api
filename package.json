@@ -1,0 +1,31 @@
+{
+  "name": "api",
+  "version": "0.0.0",
+  "engines": {
+    "npm": "6.14.3",
+    "node": "14.17.3"
+  },
+  "private": true,
+  "scripts": {
+    "start": "set NODE_ENV=production&node ./bin/www",
+    "dev": "set NODE_ENV=development&nodemon ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "1.19.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "8.2.0",
+    "express": "~4.16.1",
+    "jsonwebtoken": "8.5.1",
+    "lodash": "4.17.15",
+    "lodasync": "1.0.7",
+    "moment": "2.26.0",
+    "mongodb": "3.5.7",
+    "morgan": "~1.9.1",
+    "short-id": "0.1.0-1",
+    "socket.io": "2.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
