@@ -4,15 +4,15 @@ const ObjectId = require('mongodb').ObjectId;
 module.exports = {
     getOrders: async function (req, res, next) {
         const client = new MongoClient(DbUrl, {useNewUrlParser: true, useUnifiedTopology: true});
-        const {filter, sort, page, pagesize} = req;
-       // console.log(JSON.stringify({filter, page, pagesize}));
+        const {filter, sort, page, pageSize} = req;
+
         try {
             await client.connect();
             const db = client.db(DbName);
             const colOrder = db.collection('Order');
             let count = await colOrder.find().toArray();
-            let totalPage = Math.ceil(parseInt(count.length) / pagesize);
-            let arrMGG = await colOrder.find().sort(sort).limit(parseInt(pagesize)).skip(parseInt(pagesize) * parseInt(page)).toArray();
+            let totalPage = Math.ceil(parseInt(count.length) / pageSize);
+            let arrMGG = await colOrder.find().sort(sort).limit(parseInt(pageSize)).skip(parseInt(pageSize) * parseInt(page)).toArray();
            
             client.close();
             res.status(200).json({

@@ -1,6 +1,5 @@
 require('dotenv').config();
-//console.log(process.env.NODE_ENV);
-//const createError = require('http-errors');
+
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -17,6 +16,7 @@ ids.configure({
 
 const indexRouter = require('./routes/index.Route');
 const orderRouter = require('./routes/order.Route');
+const dishesRouter = require('./routes/dishes.Route');
 
 const app = express();
 
@@ -44,5 +44,6 @@ app.use(function (req, res, next) {
 
 app.use('/', indexRouter);
 app.use('/api/v1/order', orderRouter);
+app.use('/api/v1/dishes', dishesRouter);
 
 module.exports = app;

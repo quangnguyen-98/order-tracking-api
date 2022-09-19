@@ -19,7 +19,7 @@
     "jsonwebtoken": "8.5.1",
     "lodash": "4.17.15",
     "lodasync": "1.0.7",
-    "moment": "2.26.0",
+    "moment": "^2.26.0",
     "mongodb": "3.5.7",
     "morgan": "~1.9.1",
     "short-id": "0.1.0-1",
