@@ -4,14 +4,11 @@ const ObjectId = require('mongodb').ObjectId;
 const moment = require('moment');
 const { SUCCESS, ERROR } = httpResponse;
 const { Dishes } = MongoCollection;
-module.exports = {
-    getDishes: async function (req, res, next) {
-        const { filter, sort, page, pageSize } = req.body;
-        const a = {
-            name: { '$regex': 'Pudding', '$options': '$i' }
-        };
 
+module.exports = {
+    getListDishes: async function (req, res, next) {
         try {
+            const { filter, sort, page, pageSize } = req.body;
             const dbConnection = new MongoClient(DbUrl, defaultDbOptions);
             await dbConnection.connect();
             const db = dbConnection.db(DbName);
@@ -44,12 +41,13 @@ module.exports = {
             await dbConnection.connect();
             const db = dbConnection.db(DbName);
             const dishesCollection = db.collection(Dishes);
-            //Kiểm tra tên mã giảm giá đã tồn tại hay chưa
+
+            //Check dishes name exist
             let result = await dishesCollection.find({ name: req.body.name }).next();
             if (result != null) {
                 res.status(400).json({
                     status: ERROR,
-                    message: 'Dishes already existed !'
+                    message: 'Dishes already existed!'
                 });
             } else {
                 let params = {
@@ -78,12 +76,13 @@ module.exports = {
             await dbConnection.connect();
             const db = dbConnection.db(DbName);
             const dishesCollection = db.collection(Dishes);
-            //Kiểm tra tên mã giảm giá đã tồn tại hay chưa
+
+            //Check dishes name exist
             let result = await dishesCollection.find({ _id: { $ne: ObjectId(req.body._id) }, name: req.body.name }).next();
             if (result != null) {
                 res.status(400).json({
                     status: ERROR,
-                    message: 'Have an Id use this dishes name !'
+                    message: 'Have an Id use this dishes name!'
                 });
             } else {
                 let result = await dishesCollection.findOneAndUpdate(

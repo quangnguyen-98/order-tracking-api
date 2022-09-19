@@ -6,14 +6,15 @@ const httpResponse = {
 
 
 const MongoCollection = {
-    Dishes: 'Dishes'
+    Dishes: 'Dishes',
+    Order: 'Order'
 };
 /*Contstant--------------------------------------------------------*/
 const DbName = 'baeminOrderTracking';
 
-const defaultDbOptions ={
+const defaultDbOptions = {
     useNewUrlParser: true, useUnifiedTopology: true
-}
+};
 
 /*Connect DB--------------------------------------------------------*/
 let DbUrl = 'mongodb+srv://bb4298:quangdeptrai01@cluster0.waxmu.mongodb.net/?retryWrites=true&w=majority';
