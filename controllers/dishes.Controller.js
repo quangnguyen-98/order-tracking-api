@@ -2,13 +2,17 @@ const { DbUrl, DbName, httpResponse, MongoCollection, defaultDbOptions } = requi
 const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectId;
 const moment = require('moment');
+const { preprocessingHandleFilter } = require('../utils/appUtils');
+const { removeAccents } = require('../utils/stringUtils');
 const { SUCCESS, ERROR } = httpResponse;
 const { Dishes } = MongoCollection;
 
 module.exports = {
     getListDishes: async function (req, res, next) {
         try {
-            const { filter, sort, page, pageSize } = req.body;
+            const { filter: paramFilter, sort, page, pageSize } = req.body;
+            const filter = preprocessingHandleFilter(paramFilter);
+
             const dbConnection = new MongoClient(DbUrl, defaultDbOptions);
             await dbConnection.connect();
             const db = dbConnection.db(DbName);
@@ -52,6 +56,7 @@ module.exports = {
             } else {
                 let params = {
                     name: req.body.name,
+                    lowerCaseName: removeAccents(req.body.name),
                     price: parseInt(req.body.price),
                     createdDate: moment().toDate(),
                     updatedDate: moment().toDate()
@@ -90,6 +95,7 @@ module.exports = {
                     {
                         $set: {
                             name: req.body.name,
+                            lowerCaseName: removeAccents(req.body.name),
                             price: req.body.price,
                             updatedDate: moment().toDate()
                         }
