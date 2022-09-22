@@ -1,19 +1,18 @@
-
-const httpResponse = {
-    SUCCESS: 'SUCCESS',
-    ERROR: 'ERROR'
+const HttpResponse = {
+	SUCCESS: 'SUCCESS',
+	ERROR: 'ERROR'
 };
 
 
 const MongoCollection = {
-    Dishes: 'Dishes',
-    Order: 'Order'
+	Dishes: 'Dishes',
+	Order: 'Order'
 };
 /*Contstant--------------------------------------------------------*/
 const DbName = 'baeminOrderTracking';
 
-const defaultDbOptions = {
-    useNewUrlParser: true, useUnifiedTopology: true
+const DefaultDbOptions = {
+	useNewUrlParser: true, useUnifiedTopology: true
 };
 
 /*Connect DB--------------------------------------------------------*/
@@ -22,9 +21,9 @@ let DbUrl = 'mongodb+srv://bb4298:quangdeptrai01@cluster0.waxmu.mongodb.net/?ret
 
 
 module.exports = {
-    DbUrl,
-    DbName,
-    httpResponse,
-    MongoCollection,
-    defaultDbOptions
+	DbUrl,
+	DbName,
+	HttpResponse,
+	MongoCollection,
+	DefaultDbOptions
 };
