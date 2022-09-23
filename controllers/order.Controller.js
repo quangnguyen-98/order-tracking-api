@@ -12,7 +12,6 @@ module.exports = {
 		try {
 			const { filter: paramFilter, sort, page, pageSize } = req.body;
 			const filter = preprocessingHandleFilter(paramFilter);
-
 			const dbConnection = new MongoClient(DbUrl, DefaultDbOptions);
 			await dbConnection.connect();
 			const db = dbConnection.db(DbName);

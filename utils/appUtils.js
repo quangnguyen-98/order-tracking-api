@@ -7,6 +7,7 @@ module.exports = {
       delete filter.searchText;
       delete filter.searchField;
     }
+
     if (filter.createdDate) {
       if (filter.createdDate['$gte']) {
         filter.createdDate['$gte'] = new Date(filter.createdDate['$gte']);
@@ -21,7 +22,7 @@ module.exports = {
         filter.createdDate['$lt'] = new Date(filter.createdDate['$lt']);
       }
     }
-    if (filter.updatedDate) {
+    else if (filter.updatedDate) {
       if (filter.updatedDate['$gte']) {
         filter.updatedDate['$gte'] = new Date(filter.updatedDate['$gte']);
       }
@@ -34,6 +35,27 @@ module.exports = {
       if (filter.updatedDate['$lt']) {
         filter.updatedDate['$lt'] = new Date(filter.updatedDate['$lt']);
       }
+    }
+
+    if (filter.$or) {
+      filter.$or = filter.$or.map(item => {
+        if (item.updatedDate.$gte) {
+          return {
+            ...item,
+            updatedDate: {
+              '$lt': new Date(item.updatedDate['$lt']),
+              '$gte': new Date(item.updatedDate['$gte'])
+            }
+          };
+        } else {
+          return {
+            ...item,
+            updatedDate: {
+              '$lt': new Date(item.updatedDate['$lt'])
+            }
+          };
+        }
+      });
     }
     return filter;
   }
