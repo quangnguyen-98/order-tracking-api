@@ -7,11 +7,10 @@ const { dishesController } = require('../controllers');
 // Get list dishes 
 router.post('/get-list-dishes', dishesController.getListDishes);
 
-// Get list dishes
+// Create dishes
 router.post('/', dishesController.createDishes);
 
-// Get list dishes
+// Update dishes
 router.put('/', dishesController.updateDishes);
-
 
 module.exports = router;

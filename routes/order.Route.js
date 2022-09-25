@@ -7,10 +7,13 @@ const { orderController } = require('../controllers');
 // Get list dishes 
 router.post('/get-list-order', orderController.getListOrder);
 
-// Get list dishes
+// Create order
 router.post('/', orderController.createOrder);
 
-// Get list dishes
+// Update order
 router.put('/', orderController.updateOrder);
+
+// Update order payment status
+router.put('/paymentstatus', orderController.updateOrderPaymentStatus);
 
 module.exports = router;
