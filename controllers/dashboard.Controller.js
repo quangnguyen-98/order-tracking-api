@@ -4,7 +4,7 @@ const moment = require('moment');
 const { ERROR } = HttpResponse;
 const { Order } = MongoCollection;
 const { CREATED, ACCEPTED, DRIVERASSIGNED, DELIVERING, DONE, CANCELED } = OrderStatuses;
-const { Created, Accepted, Driverassigned, Delivering, Done, Canceled } = OrderStatusLabels;
+const { Created, Accepted, DriverAssigned: Driverassigned, Delivering, Done, Canceled } = OrderStatusLabels;
 const { Normal, Warning, Late } = LateStatus;
 
 module.exports = {
