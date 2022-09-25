@@ -59,6 +59,7 @@ module.exports = {
 				status,
 				previousStatus: status,
 				totalPrice: parseInt(totalPrice),
+				wasPurchasedOnline: false,
 				createdDate: moment().toDate(),
 				updatedDate: moment().toDate(),
 				statusUpdatedDate: moment().toDate()
@@ -122,5 +123,34 @@ module.exports = {
 			});
 		}
 	},
+	updateOrderPaymentStatus: async function (req, res, next) {
+		try {
+			const dbConnection = new MongoClient(DbUrl, DefaultDbOptions);
+			await dbConnection.connect();
+			const db = dbConnection.db(DbName);
+			const orderCollection = db.collection(Order);
 
+			const { _id, status } = req.body;
+
+			let result = await orderCollection.findOneAndUpdate(
+				{ _id: ObjectId(_id) },
+				{
+					$set: {
+						wasPurchasedOnline: status
+					}
+				},
+				{ returnOriginal: false }
+			);
+			dbConnection.close();
+			res.status(200).json({
+				status: SUCCESS,
+				data: result.value
+			});
+		} catch (err) {
+			res.status(400).json({
+				status: ERROR,
+				message: err.toString()
+			});
+		}
+	}
 };
