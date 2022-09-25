@@ -19,9 +19,9 @@ const OrderStatuses = {
 };
 
 const OrderStatusLabels = {
-	Created: 'Crteated',
+	Created: 'Created',
 	Accepted: 'Accepted',
-	Driverassigned: 'Driverassigned',
+	DriverAssigned: 'Driver Assigned',
 	Delivering: 'Delivering',
 	Done: 'Done',
 	Canceled: 'Canceled'
