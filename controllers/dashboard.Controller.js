@@ -1,6 +1,5 @@
 const { DbUrl, DbName, HttpResponse, MongoCollection, DefaultDbOptions, OrderStatuses, OrderStatusLabels, LateStatus } = require('../configs/constant');
 const MongoClient = require('mongodb').MongoClient;
-const moment = require('moment');
 const { ERROR } = HttpResponse;
 const { Order } = MongoCollection;
 const { CREATED, ACCEPTED, DRIVERASSIGNED, DELIVERING, DONE, CANCELED } = OrderStatuses;
